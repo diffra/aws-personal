@@ -1,0 +1,47 @@
+#VGW wide configs
+igw: True
+
+subnets:
+  Public1:
+    cidr: 10.10.1.0/24
+    az: us-west-2a
+    acl: jbmeNACL
+  Public2:
+    cidr: 10.10.2.0/24
+    az: us-west-2b
+    acl: jbmeNACL
+  Private1:
+    cidr: 10.10.101.0/24
+    az: us-west-2a
+    acl: jbmeNACL
+  Private2:
+    cidr: 10.10.102.0/24
+    az: us-west-2b
+    acl: jbmeNACL
+
+acl:
+  name: jbmeNACL
+  inbound:
+    # Rule numbers are dictionary entries
+    100:
+      type: ALL
+      protocol: ALL
+      port: 22
+      source: 0.0.0.0/0
+    110:
+      type: ALL
+      protocol: ALL
+      port: 80
+      source: 0.0.0.0/0
+    120:
+      type: ALL
+      protocol: ALL
+      port: 443
+      source: 0.0.0.0/0
+  outbound:
+    # Rule numbers are dictionary entries
+    100:
+      type: ALL
+      protocol: ALL
+      port: ALL
+      source: 0.0.0.0/0
